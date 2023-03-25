@@ -6,7 +6,8 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageurl = "";
+    final imageurl =
+        "https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg";
     return Drawer(
       child: Container(
         color: Colors.deepPurple,
