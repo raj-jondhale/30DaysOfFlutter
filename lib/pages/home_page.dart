@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/models/catalog.dart';
+import 'package:my_app/utils/routes.dart';
 import 'package:my_app/widgets/themes.dart';
 import 'dart:convert';
 
@@ -42,6 +44,11 @@ class _HomePageState extends State<HomePage> {
     // final dummyList = List.generate(4, (index) => CatalogModel.items[0]);
 
     return Scaffold(
+      backgroundColor: MyThemes.creamColor,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+          backgroundColor: MyThemes.darkBluishColor,
+          child: Icon(CupertinoIcons.cart)),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -60,9 +67,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-
-
-
