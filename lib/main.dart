@@ -14,21 +14,21 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
- // const MyApp({super.key});
+  // const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.system,
         theme: MyThemes.lightTheme(context),
         darkTheme: MyThemes.darkTheme(context),
         debugShowCheckedModeBanner: false,
-        initialRoute: MyRoutes.homeRoute,
+        initialRoute: MyRoutes.loginRoute,
         routes: {
           "/": (context) => loginPage(),
           MyRoutes.homeRoute: (context) => HomePage(),
           MyRoutes.loginRoute: (context) => loginPage(),
-          MyRoutes.cartRoute:(context) => CartPage(),
+          MyRoutes.cartRoute: (context) => CartPage(),
         });
   }
 }

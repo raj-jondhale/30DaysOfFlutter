@@ -49,7 +49,7 @@ class CatalogItem extends StatelessWidget {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              catalog.name.text.lg.color(MyThemes.darkBluishColor).bold.make(),
+              catalog.name.text.lg.color(context.accentColor).bold.make(),
               catalog.desc.text.textStyle(context.captionStyle).make(),
               10.heightBox,
               ButtonBar(
@@ -70,6 +70,6 @@ class CatalogItem extends StatelessWidget {
           )),
         ],
       ),
-    ).white.roundedLg.square(120).make().py(12);
+    ).color(context.cardColor).roundedLg.square(120).make().py(12);
   }
 }
