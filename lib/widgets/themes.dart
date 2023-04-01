@@ -39,12 +39,12 @@ class MyThemes {
         ),
         buttonColor: lightBluishColor,
         appBarTheme: AppBarTheme(
-          color: Colors.black,
-          elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.white),
-          toolbarTextStyle: Theme.of(context).textTheme.bodyText2,
-          titleTextStyle: Theme.of(context).textTheme.headline6,
-        ),
+            color: Colors.black,
+            elevation: 0.0,
+            iconTheme: IconThemeData(color: Colors.white),
+            toolbarTextStyle: Theme.of(context).textTheme.bodyText2,
+            // titleTextStyle: Theme.of(context).textTheme.headline6,
+            ),
       );
   //colors
   static Color creamColor = Color(0xfff5f5f5);
