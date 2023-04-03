@@ -1,16 +1,18 @@
-import "dart:ui";
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/pages/cart_page.dart';
 import 'package:my_app/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import 'core/store.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
 import 'widgets/themes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(VxState(
+    store: MyStore(),
+    child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
