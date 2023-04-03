@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/core/store.dart';
 
 import '../../models/cart.dart';
 import '../../models/catalog.dart';
@@ -13,32 +14,35 @@ class AddToCart extends StatelessWidget {
     required this.catalog,
   });
 
-  
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    bool isInCart = _cart.items.contains(catalog);
-    // bool isInCart =
-    //     _cart.items != null ? _cart.items.contains(widget.catalog) : false;
+    // final CartModel _cart = (VxState.store as MyStore).cart;
+    // bool isInCart = _cart.items.contains(catalog);
 
-    return ElevatedButton(
-      onPressed: () {
-        if (!isInCart) {
-          isInCart = isInCart.toggle();
-          final _catalog = CatalogModel();
+    return VxConsumer(
+      mutations: {AddMutation},
+      builder: (context, _, __) {
+        final CartModel _cart = (VxState.store as MyStore).cart;
+        bool isInCart = _cart.items.contains(catalog);
 
-          _cart.catalog = _catalog;
-          _cart.add(catalog);
-          // setState(() {});
-        }
+        return ElevatedButton(
+          onPressed: () {
+            if (!isInCart) {
+              AddMutation(catalog.id);
+            }
+          },
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all(MyThemes.darkBluishColor),
+            shape: MaterialStateProperty.all(
+              StadiumBorder(),
+            ),
+          ),
+          child: isInCart
+              ? Icon(Icons.done)
+              : Icon(CupertinoIcons.cart_badge_plus),
+        );
       },
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(MyThemes.darkBluishColor),
-        shape: MaterialStateProperty.all(
-          StadiumBorder(),
-        ),
-      ),
-      child: isInCart ? Icon(Icons.done) : Icon(CupertinoIcons.cart_badge_plus),
     );
   }
 }
