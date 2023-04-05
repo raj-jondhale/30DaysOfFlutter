@@ -12,7 +12,7 @@ class CatalogImage extends StatelessWidget {
     return Image.network(image)
         .box
         .rounded
-        .p12
+        .p1
         .color(context.canvasColor)
         .make()
         .p12()

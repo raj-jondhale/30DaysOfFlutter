@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_app/pages/home_detail_page.dart';
+import 'package:my_app/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../models/catalog.dart';
@@ -13,7 +14,10 @@ class CatalogList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return !context.isMobile
+    ?
+    GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 20),
       shrinkWrap: true,
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
@@ -26,6 +30,18 @@ class CatalogList extends StatelessWidget {
                     builder: (context) => HomeDetailPage(catalog: catalog),
                   ),
                 ),
+            child: CatalogItem(catalog: catalog));
+      },
+    ):
+    ListView.builder(
+      shrinkWrap: true,
+      itemCount: CatalogModel.items.length,
+      itemBuilder: (context, index) {
+        final catalog = CatalogModel.items[index];
+        // CatalogModel.items[index];
+        return InkWell(
+            onTap: () => context.vxNav.push(Uri.parse(MyRoutes.homeDetailRoute),
+            params: catalog),
             child: CatalogItem(catalog: catalog));
       },
     );
@@ -41,9 +57,7 @@ class CatalogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VxBox(
-      child: Row(
-        children: [
+    var children2 = [
           Hero(
             tag: Key(catalog.id.toString()),
             child: CatalogImage(image: catalog.image),
@@ -64,8 +78,14 @@ class CatalogItem extends StatelessWidget {
                 ],
               ).pOnly(right: 8.0)
             ],
-          )),
-        ],
+          ).p(context.isMobile? 0:16),
+          ),
+        ];
+    return VxBox(
+      child: context.isMobile? Row(
+        children: children2,
+      ):Column(
+        children: children2,
       ),
     ).color(context.cardColor).roundedLg.square(120).make().py(12);
   }
