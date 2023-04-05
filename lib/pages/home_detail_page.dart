@@ -28,7 +28,7 @@ class HomeDetailPage extends StatelessWidget {
             "\$${catalog.price}".text.bold.xl3.red800.make(),
             AddToCart(catalog: catalog).wh(120, 50),
           ],
-        ).p32(),
+        ).p24(),
       ),
       body: SafeArea(
         bottom: false,
